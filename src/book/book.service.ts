@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { getRepository, Repository } from 'typeorm';
+import { getConnection, Repository } from 'typeorm';
 import { Book } from './book.entity';
 import { createBookParams, updateBookParams } from './book.type';
 
@@ -7,11 +7,11 @@ import { createBookParams, updateBookParams } from './book.type';
 export class BookService {
   bookRepository: Repository<Book>;
   constructor() {
-    this.bookRepository = getRepository(Book);
+    this.bookRepository = getConnection().getRepository(Book);
   }
 
   async isBookExist(id: string): Promise<boolean> {
-    return (await this.bookRepository.findOne(id)) ? true : false;
+    return !!(await this.getBookById(id));
   }
 
   async getBookById(id: string): Promise<Book> {

@@ -20,3 +20,7 @@ export type updateBookParams = {
   genre?: Genre;
   price?: number;
 };
+
+export type getBookParams = {
+  id: string;
+};

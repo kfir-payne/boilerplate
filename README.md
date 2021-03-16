@@ -57,3 +57,18 @@ $ npm run test:e2e
 # test coverage
 $ npm run test:cov
 ```
+
+## DB
+
+Make sure to add ormconfig.json file in the config dir with your Database configuration.
+```typescript
+{
+  "type": "{nestjs-supported-db-type}",
+  "host": "{db-hostname}",
+  "port": "{port-number}",
+  "username": "{db-user-name}",
+  "password": "{db-password}",
+  "database": "{db-name}",
+  "entities": ["dist/**/*.entity{.ts,.js}"],
+}
+```
